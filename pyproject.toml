@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-engineering-benchmark"
+version = "0.1.0"
+description = "Autonomous Agent Benchmark Harness for Multi-Step Engineering Systems, Symbolic Verification, and Dimensional Analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Antigravity Engineering Team"}]
+dependencies = [
+    "sympy>=1.12",
+    "pydantic>=2.5.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+]
+
+[project.scripts]
+agent-benchmark = "agent_benchmark.telemetry.reporter:cli_main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+pythonpath = ["src"]
+addopts = "-v --strict-markers"
+
+[tool.setuptools.packages.find]
+where = ["src"]
